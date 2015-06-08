@@ -128,14 +128,14 @@ enum Result {
 Result resolve(vector<Rule> startDb, Rule startRule)
 {
     int totalIterations = 0;
-    for(int tries = 0; tries < 1000; tries++)
+    for(int tries = 0; tries < 100000; tries++)
     {
         int iterations = 0;
         _ currentRule = startRule;
         _ db = startDb;
 
         bool finished = false;
-        while(!finished && iterations < 100)
+        while(!finished && iterations < 500)
         {
             std::random_shuffle ( db.begin(), db.end() );
             iterations++;
@@ -154,48 +154,14 @@ Result resolve(vector<Rule> startDb, Rule startRule)
     return False;
 }
 
-void test()
-{
-    /*
-    _ pTree = newPredicateName();
-    _ pBig = newPredicateName();
-    _ vA = newConstantName();
-    _ vX = newVariableName();
-
-    _ lAIsTree = Literal { pTree, { vA } };
-    _ rAIsTree = Rule { lAIsTree };
-
-    _ lTreeX = Literal { pTree, { vX } };
-    _ lBigX = Literal { pBig, { vX } };
-    _ rTreesAreBig = Rule { lBigX, { lTreeX } };
-
-    _ lBigA = Literal { pBig, { vA } };
-    _ rANotBig = Rule { None, { lBigA } };
-
-    _ db = vector<Rule> { rAIsTree, rTreesAreBig };
-
-    _ negatedQuery = rANotBig;
-    */
-
-    _ db = vector<Rule> { parseRule("tree(a):-"), parseRule("big(X):-tree(X)") };
-
-    _ negatedQuery = parseRule(":-big(a)");
-
-    _ result = resolve(db, negatedQuery);
-
-    if(result == False)
-        cout << "False" << endl;
-    else if(result == True)
-        cout << "True" << endl;
-    else
-        cout << "Maybe" << endl;
-}
-
 void shell()
 {
     vector<Rule> db;
 
-    cout << "Input your knowledge and negated queries" << endl;
+    cout << "Enter your knowledge and negated queries" << endl;
+    cout << "Example rule:  big(X) :- tree(X)" << endl;
+    cout << "Example fact:  parent(adam,cain) :-" << endl;
+    cout << "Example query: :- ancestor(adam,noah)" << endl;
 
     bool inputComplete = false;
     bool hasInput = false;
@@ -237,7 +203,6 @@ void shell()
 
 int main()
 {
-    //prolo::test();
     prolo::shell();
     return 0;
 }
