@@ -48,4 +48,5 @@ install_manifest.txt
 *.out
 *.app
 
-
+### IDEs ###
+*.user
