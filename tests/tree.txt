@@ -1,0 +1,4 @@
+tree(a):-
+big(X):-tree(X)
+:-big(a)
+

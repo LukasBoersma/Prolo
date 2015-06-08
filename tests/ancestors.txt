@@ -1,0 +1,10 @@
+ancestor(X,Y):-parent(X,Y)
+ancestor(X,Y):-parent(X,Z),ancestor(Z,Y)
+parent(adam,seth):-
+parent(seth,enos):-
+parent(enos,cainan):-
+:-ancestor(adam,enos)
+
+grandfather(X,Y):-parent(X,Z),parent(Z,Y)
+:-grandfather(adam,enos)
+
