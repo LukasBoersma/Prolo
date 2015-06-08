@@ -1,10 +1,24 @@
 ancestor(X,Y):-parent(X,Y)
 ancestor(X,Y):-parent(X,Z),ancestor(Z,Y)
+ancestor(X,Y):-ancestor(X,Z),parent(Z,Y)
+grandfather(X,Y):-parent(X,Z),parent(Z,Y)
+
+parent(adam,cain):-
+parent(adam,abel):-
 parent(adam,seth):-
 parent(seth,enos):-
 parent(enos,cainan):-
-:-ancestor(adam,enos)
+parent(cainan,maleleel):-
+parent(maleleel,jared):-
+parent(jared,enoch):-
+parent(enoch,mathusala):-
+parent(mathusala,lamech):-
+parent(lamech,noah):-
+parent(noah,shem):-
+parent(noah,ham):-
+parent(noah,japeth):-
 
-grandfather(X,Y):-parent(X,Z),parent(Z,Y)
 :-grandfather(adam,enos)
+:-ancestor(adam,enos)
+:-ancestor(adam,noah)
 
